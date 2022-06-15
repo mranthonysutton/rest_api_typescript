@@ -32,4 +32,27 @@ authorRouter.get('/:id', async (request: Request, response: Response) => {
   }
 });
 
+// POST: create a new author
+// Params: firstName and lastName
+authorRouter.post(
+  '/',
+  body('firstName').isString(),
+  body('lastName').isString(),
+  async (request: Request, response: Response) => {
+    const errors = validationResult(request);
+
+    if (!errors.isEmpty()) {
+      return response.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const author = request.body;
+      const newAuthor = await AuthorService.createAuthor(author);
+      return response.status(201).json(newAuthor);
+    } catch (error: any) {
+      return response.status(500).json(error.message);
+    }
+  }
+);
+
 export { authorRouter };
