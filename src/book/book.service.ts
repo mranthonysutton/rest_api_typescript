@@ -13,7 +13,7 @@ type BookRead = {
 type BookWrite = {
   title: string;
   datePublished: Date;
-  authorId: int;
+  authorId: number;
   isFiction: boolean;
 };
 
