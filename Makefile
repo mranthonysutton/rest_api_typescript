@@ -7,7 +7,5 @@ prismapush:
 prismaseed:
 	npx prisma db seed
 
-dev:
-	nodemon src/index.ts
 
-.PHONY: prismaformat prismapush dev prismaseed
+.PHONY: prismaformat prismapush prismaseed
